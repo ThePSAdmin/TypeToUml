@@ -27,6 +27,11 @@ This also works very well with [ClassExplorer](https://github.com/SeeminglyScien
 ```powershell
 find-type -InheritsType System.Management.Automation.Language.Ast | Show-TypeUmlDiagram -IncludeBaseTypes
 ```
+## Stuff to do
+*   Add constructors
+*   Add private members
+*   Clean up the code
+
 
 ## Credits
 Big thanks to @kevinmarquette for PSGraph, which is a dependency of this module, for making this so easy.
