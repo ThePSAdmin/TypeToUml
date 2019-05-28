@@ -18,6 +18,14 @@ function _newRecordLabel {
 
 }
 
+function _escapeXML {
+    param(
+        [string]$text
+    )
+
+    [System.Security.SecurityElement]::Escape($text)
+}
+
 function _getDeclaredMembers {
     param(
         [Parameter(Mandatory)]
@@ -47,7 +55,8 @@ function _getMethodSignature {
                 "{0} {1}" -f $_.ParameterType, $_.Name
             }) -join ","
 
-    "{0} ({1}) : {2}" -f $MethodInfo.Name, $methodParamString, $MethodInfo.ReturnType
+    $result = "{0} ({1}) : {2}" -f $MethodInfo.Name, $methodParamString, $MethodInfo.ReturnType
+    _escapeXML $result
 
 }
 
@@ -58,7 +67,8 @@ function _getPropertySignature {
         $MethodInfo
     )
 
-    "{0}: {1}" -f $MethodInfo.Name, $MethodInfo.PropertyType
+    $result = "{0}: {1}" -f $MethodInfo.Name, $MethodInfo.PropertyType
+    _escapeXML $result
 }
 
 function _convertTypeToNode {
